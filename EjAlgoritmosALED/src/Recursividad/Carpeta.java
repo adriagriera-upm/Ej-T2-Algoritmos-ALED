@@ -41,7 +41,7 @@ public class Carpeta {
 			} 
 		}
 		if(inicio.getSubcarpetas() == null) {
-			calcularPesoTotal(preinicio, pesoTotal);
+			//TODO Controlar condición
 		}
 		
 		return pesoTotal;
