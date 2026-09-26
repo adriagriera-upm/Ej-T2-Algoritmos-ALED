@@ -1,4 +1,4 @@
-package Recursividad;
+ package Recursividad;
 
 public class Archivo {
 	private String nombre;
@@ -13,5 +13,5 @@ public class Archivo {
 		return pesoMB;
 	}
 
-	//TODO revisar para método ej 1
+	
 }
