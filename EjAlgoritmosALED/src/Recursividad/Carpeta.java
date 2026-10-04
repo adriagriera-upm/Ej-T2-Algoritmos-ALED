@@ -9,10 +9,10 @@ public class Carpeta {
 	private List<Archivo> archivos;
 	private List<Carpeta > subcarpetas;
 	
-	public Carpeta(String nombre, List<Archivo> archivos, List<Carpeta > subcarpetas) {
+	public Carpeta(String nombre) {
 		this.nombre=nombre;
-		this.archivos=archivos;
-		this.subcarpetas=subcarpetas;
+		this.archivos= new ArrayList<>();
+		this.subcarpetas = new ArrayList<>();
 	}
 	public List<Archivo> getArchivos(){
 		return this.archivos;
@@ -23,51 +23,39 @@ public class Carpeta {
 	}
 	
 	public static double calcularPesoTotal(Carpeta inicio, double acumulado) {
-		Carpeta preinicio = inicio;
-		double pesoTotal = acumulado;
-		boolean visited = false;
 		
-		if(inicio.getArchivos() != null) { //Caso base: no más subcarpetas o archivos dentro->cálculo del pesoTotal de esa carpeta
+		double peso = 0;
+		
+		if(inicio.getSubcarpetas().isEmpty() && !inicio.getArchivos().isEmpty()) { //Caso base: no más subcarpetas->cálculo del pesoTotal de esa carpeta
 			for(int i=0; i<inicio.getArchivos().size();i++) {
-				pesoTotal += inicio.getArchivos().get(i).getPesoMB();
-				
-			}
-			visited = true;
+					peso += inicio.getArchivos().get(i).getPesoMB();	
+				}
 		}
 		
-		if (inicio.getSubcarpetas() != null && visited == true){	//Caso recursivo: exploramos las subcarpetas de inicio
+		 else if(!inicio.getSubcarpetas().isEmpty()) {	//Caso recursivo: exploramos las subcarpetas de inicio
+			for(int i=0; i<inicio.getArchivos().size();i++) {
+				peso += inicio.getArchivos().get(i).getPesoMB();
+			}
 			for(int j=0; j<inicio.getSubcarpetas().size();j++) {
-				calcularPesoTotal(inicio.getSubcarpetas().get(j), pesoTotal);
+				peso += calcularPesoTotal(inicio.getSubcarpetas().get(j), peso);
 			} 
 		}
-		if(inicio.getSubcarpetas() == null) {
-			//TODO Controlar condición
-		}
-		
-		return pesoTotal;
+		return peso;
 	}
 
 	public static void main(String[] args) {
-		
-		
-		
-		
-		Archivo vid = new Archivo("Vídeo David p1", 56);
+		Archivo vid = new Archivo("Vídeo David p1", 65);
 		Archivo pr = new Archivo("Práctica 1 ALED",2);
-		Carpeta c2 = new Carpeta("Carpeta c.2",null,null);
-		List<Carpeta> subcarpetasC = new ArrayList<Carpeta>();
-		List<Archivo> archivosC1 = new ArrayList<Archivo>();
-		archivosC1.add(pr);
-		archivosC1.add(vid);
-		Carpeta c1 = new Carpeta("Carpeta c.2",archivosC1,null);
-		subcarpetasC.add(c1);
-		subcarpetasC.add(c2);
-		List<Archivo> archivosC = new ArrayList<Archivo>();
-		archivosC.add(vid);
-		archivosC.add(pr);
-		Carpeta c = new Carpeta("Carpeta c",archivosC,subcarpetasC);
-		System.out.println(calcularPesoTotal(c,0));
+		Carpeta c = new Carpeta("Carpeta c");
+		Carpeta c1 = new Carpeta("Carpeta c1");
+		c.getArchivos().add(pr);
+		c.getArchivos().add(vid);
+		c.getSubcarpetas().add(c1);
+		c1.getArchivos().add(pr);
+		c1.getArchivos().add(vid);
+		c.getSubcarpetas().add(new Carpeta("Carpeta c2"));
 		
+		System.out.println(calcularPesoTotal(c,0));
 		
 	}
 
