@@ -26,9 +26,8 @@ public class Empleado {
 
 	public static double presupuestoEquipo(Empleado jefe, double acumulado) {
 		
-		double salarios = 0;
-		salarios = jefe.getSalario();
-		//Caso base: cuando llegamos al becario
+		double salarios = jefe.getSalario();
+		//Caso base: cuando llegamos a un empleado que no tiene subordinados
 		if(jefe.getSubordinados().isEmpty()) {
 			return salarios;
 		}
