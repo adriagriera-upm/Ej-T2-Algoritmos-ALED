@@ -11,20 +11,23 @@ public class NodoLista {
 	
 	public static NodoLista invertirRecursivo (NodoLista actual) {
 		
-		NodoLista neworigen; 
 		// Caso base: lista vacía o único elemento
 		if (actual == null || actual.siguiente == null) {
-		NodoLista finalnodo = actual;
-		actual = null;
-		return finalnodo;
+			return actual;
 		}
-		// Paso recursivo:
+		
 		else {
-			neworigen = invertirRecursivo(actual.siguiente);
-			while(actual.siguiente != null) {
-				
-			}
+		// Paso recursivo:
+		NodoLista newinv = invertirRecursivo(actual.siguiente);
+		
+		actual.siguiente.siguiente = actual;
+		
+		actual.siguiente = null;
+		
+		return newinv;
 		}
+			
+		
 	}
 	
 	public static void main(String[] args) {
@@ -39,6 +42,9 @@ public class NodoLista {
 		n2.siguiente = n3;
 		n3.siguiente = n4;
 		n4.siguiente = n5;
+		
+		n1.siguiente.siguiente = n1;
+		
 		
 		NodoLista ninv = invertirRecursivo(n1);
 		System.out.println(ninv);
