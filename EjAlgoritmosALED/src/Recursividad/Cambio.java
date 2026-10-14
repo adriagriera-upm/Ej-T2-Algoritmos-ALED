@@ -4,24 +4,34 @@ public class Cambio {
 	
 	
 	public static int contarFormasCambio (int objetivo, int[] monedas) {
+			return contarAux(objetivo,monedas,0,0);
+	}
+	
+	private static int contarAux(int objetivo, int[] monedas, int acumulado, int numerocombinaciones) {
 		
-		if()
+		if(acumulado > objetivo) {
+			return numerocombinaciones;
+		}
 		
-		
-		if(objetivo < 0) {
+		if(acumulado == objetivo) {
+			numerocombinaciones++;
+			return numerocombinaciones;
 			
 		}
 		
-		if(objetivo == 0) {
+		for(int moneda : monedas) {
+			numerocombinaciones = contarAux(objetivo,monedas,acumulado+moneda,numerocombinaciones);
+			
 			
 		}
+		return numerocombinaciones;
 	}
 	
 	public static void main(String[] args) {
 		
 		int[] monedas = {1,2,5};
 		
-		
+		System.out.println(contarFormasCambio(5,monedas));
 		
 	}
 

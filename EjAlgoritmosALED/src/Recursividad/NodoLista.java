@@ -26,8 +26,6 @@ public class NodoLista {
 		
 		return newinv;
 		}
-			
-		
 	}
 	
 	public static void main(String[] args) {
@@ -42,8 +40,6 @@ public class NodoLista {
 		n2.siguiente = n3;
 		n3.siguiente = n4;
 		n4.siguiente = n5;
-		
-		n1.siguiente.siguiente = n1;
 		
 		
 		NodoLista ninv = invertirRecursivo(n1);
