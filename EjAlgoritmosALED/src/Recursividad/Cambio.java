@@ -3,11 +3,11 @@ package Recursividad;
 public class Cambio {
 	
 	
-	public static int contarFormasCambio (int objetivo, int[] monedas) {
-			return contarAux(objetivo,monedas,0,0);
+	public static int contarPermutaciones (int objetivo, int[] monedas) {
+			return contarPAux(objetivo,monedas,0,0);
 	}
 	
-	private static int contarAux(int objetivo, int[] monedas, int acumulado, int numerocombinaciones) {
+	private static int contarPAux(int objetivo, int[] monedas, int acumulado, int numerocombinaciones) {
 		
 		if(acumulado > objetivo) {
 			return numerocombinaciones;
@@ -20,18 +20,42 @@ public class Cambio {
 		}
 		
 		for(int moneda : monedas) {
-			numerocombinaciones = contarAux(objetivo,monedas,acumulado+moneda,numerocombinaciones);
+			numerocombinaciones = contarPAux(objetivo,monedas,acumulado+moneda,numerocombinaciones);
 			
 		}
 		return numerocombinaciones;
+	}
+	
+	public static int contarCombinaciones(int objetivo, int[] monedas) {
+		return contarCAux(objetivo,monedas,0);
+	}
+	
+	private static int contarCAux(int objetivo, int[] monedas, int indicemoneda) {
+		int comb = 0;
+		
+		if(objetivo == 0) {
+			return 1;
+		}
+		
+		if(objetivo<0 || indicemoneda >= monedas.length-1) {
+			 return 0;
+		}
+		//Probar
+		comb += contarCAux(objetivo-monedas[indicemoneda],monedas,indicemoneda) + contarCAux(objetivo, monedas,indicemoneda + 1);
+		
+		return comb;
 	}
 	
 	public static void main(String[] args) {
 		
 		int[] monedas = {1,2,5};
 		
-		System.out.println(contarFormasCambio(5,monedas));
+		System.out.println(contarPermutaciones(5,monedas));
+		
+		System.out.println(contarCombinaciones(3,monedas));
 		
 	}
+	
+	
 
 }
