@@ -66,7 +66,7 @@ Con $n=10$, el primer bucle for se ejecuta $n=10$ veces y el segundo 4 veces. En
 
 ### b)
 
-La variable j crece exponencialmente siguiendo $j=2^k$, siendo k el número de iteraciones, hasta llegar a n. Por tanto, en la última iteración, $n=2^k$ -> $k=log_2(n)=log_2(10)\approx 4$
+La variable j crece exponencialmente siguiendo $j=2^k$, siendo k el número de iteraciones, hasta llegar a n. Por tanto, en la última iteración, $n=2^k$ → $k=log_2(n)=log_2(10)\approx 4$
 
 ### c)
 
@@ -91,6 +91,25 @@ En el mejor caso, siendo ahora si el array esté ordenado, es como mencionada an
 ## Ejercicio 3.7
 
 Para obtener el recuento de cada nodo, el método de recuento tiene que acceder a cada uno de los nodos (para poder comprobar si este tiene hijos o no). Por tanto el orden de complejidad del método de recuento es de $O(n)$.
+
+## Ejercicio 3.8
+
+Calcula el número de generaciones que tiene el árbol sin contar la raíz del árbol. 
+
+## Ejercicio 3.9
+
+Como el árbol solo tiene una rama, el peor de los casos sería que el valor buscado fuese el último del árbol. Por tanto, el método tendría que recorrer todos los elementos del árbol, siendo el orden de complejidad $O(n)$. En cambio, siendo el mejor de los casos que el valor buscado fuese la raíz, el método solo tendría que recorrer un elemento con una complejidad $O(1)$.
+
+## Ejercicio 3.10
+
+### a)
+
+Teniendo en cuenta que para cada recursión se duplican las llamadas, siendo $n=3 → c=2^0+2^1+2^2+2^3=1+2+4+8=15$.
+
+### b)
+
+Se puede considerar que, al ser el funcionamiento de este método el inverso al de un algoritmo de complejidad $O(log(n))$, entonces el la complejidad de este será $O(2^n)$.
+
 
 
 
