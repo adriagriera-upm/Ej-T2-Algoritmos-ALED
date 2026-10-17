@@ -35,3 +35,17 @@ El código implementa el algoritmo de selection sort, ya que clave es la posici�
 En el mejor caso, es decir, cuando el array esté ordenado, la complejidad será de $O(n)$, ya que el código dentro del while no se ejecutará (se cumple que $datos[j]<clave$).
 
 En cambio, en el peor de los casos, el while se ejecutará hasta que j=0 ya que el array estará ordenado al revés. Por tanto, la complejidad será de $O(n^2)$.
+
+## Ejercicio 3.3
+
+### a y b)
+
+En $i=0$, la variable contador valdrá 1, en $i=1$: $contador= 5 + 4 = 9$. Este comportamiento se puede generalizar a $$\text{contador} = 0 + 1 + 2 + \dots + n = \frac{n(n+1)}{2}$$. Entonces, si $n=5$ $contador=15$.
+
+### c)
+
+$$O(\frac{n^2+n}{2})=O(n^2+n)=O(n^2)$$
+
+## Ejercicio 3.4
+
+### a)
